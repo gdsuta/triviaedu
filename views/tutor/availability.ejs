@@ -1,0 +1,37 @@
+<%- include('../partials/head') %>
+<section class="card">
+  <div class="card-head">
+    <h3>Tutor Availability Schedule</h3>
+    <% if (!editing) { %>
+      <a class="btn btn-sm" href="?edit=1">Edit</a>
+    <% } %>
+  </div>
+  <p class="muted small">Tick the half-hour slots when you are usually free to teach. Admins use this to schedule new students.</p>
+  <form method="post" action="/tutor/availability">
+    <input type="hidden" name="_csrf" value="<%= csrf %>">
+    <div class="table-wrap avail-wrap">
+      <table class="avail <%= editing ? 'editing' : '' %>">
+        <thead><tr><th>Time</th><% d.DAYS.forEach((day, i) => { %><th class="<%= i >= 5 ? 'wkend' : '' %>"><button type="button" class="linkish" data-col="<%= i + 1 %>" <%= editing ? '' : 'disabled' %>><%= day.slice(0, 3) %></button></th><% }) %></tr></thead>
+        <tbody>
+        <% for (const s of d.SLOTS) { %>
+          <tr>
+            <th><%= s.start %>–<%= s.end %></th>
+            <% for (let day = 1; day <= 7; day++) { const key = day + '|' + s.start; %>
+              <td class="<%= day >= 6 ? 'wkend' : '' %>">
+                <label class="slot"><input type="checkbox" name="slots" value="<%= key %>" data-day="<%= day %>" <%= set.has(key) ? 'checked' : '' %> <%= editing ? '' : 'disabled' %>><span></span></label>
+              </td>
+            <% } %>
+          </tr>
+        <% } %>
+        </tbody>
+      </table>
+    </div>
+    <% if (editing) { %>
+      <div class="actions sticky-actions">
+        <a class="btn btn-ghost" href="/tutor/availability">Cancel</a>
+        <button class="btn" type="submit">Save availability</button>
+      </div>
+    <% } %>
+  </form>
+</section>
+<%- include('../partials/foot') %>

@@ -1,0 +1,29 @@
+<%- include('partials/head') %>
+<section class="page-hero">
+  <div class="site-wrap">
+    <p class="eyebrow">Locations</p>
+    <h1>Online anywhere, at home in Greater Jakarta and Bali</h1>
+    <p class="lead">Online tutoring is available for all students in Indonesia and for Indonesian students overseas.</p>
+  </div>
+</section>
+<div class="site-wrap">
+  <section class="section split-2">
+    <div class="panel">
+      <h3>Online tutoring</h3>
+      <p>Available for students anywhere in Indonesia and for Indonesian students studying overseas.</p>
+    </div>
+    <div class="panel">
+      <h3>Home tutoring</h3>
+      <p>Some of our tutors teach face to face at the student’s home in:</p>
+      <ul class="chips">
+        <% for (const c of ['Jakarta', 'Bintaro', 'Serpong', 'Bekasi', 'Depok', 'Bogor', 'Denpasar']) { %><li><%= c %></li><% } %>
+      </ul>
+    </div>
+  </section>
+  <section class="section panel">
+    <h3>Office</h3>
+    <p><strong><%= contact.company %></strong><br><%= contact.address %></p>
+  </section>
+  <%- include('partials/cta') %>
+</div>
+<%- include('partials/foot') %>

@@ -1,0 +1,15 @@
+<%- include('../partials/head') %>
+<section class="card">
+  <div class="card-head"><h3>Progress Reports · <%= d.periodLabel(period) %></h3><%- include('../partials/month-nav', { extra: '' }) %></div>
+  <% if (!rows.length) { %><div class="empty">No reports for this month yet.</div><% } else { %>
+  <div class="table-wrap"><table class="table">
+    <thead><tr><th>Student</th><th>Subject</th><th>Tutor</th><th>Rating</th><th>Status</th><th></th></tr></thead>
+    <tbody><% for (const r of rows) { %>
+      <tr><td><%= r.student_name %></td><td><%= r.subject %></td><td><%= r.tutor_name %></td><td><%= r.rating ? r.rating + ' / 5' : '—' %></td>
+        <td><span class="badge b-<%= r.status === 'submitted' ? 'approved' : 'pending' %>"><%= r.status %></span></td>
+        <td class="right"><a class="btn btn-sm btn-ghost" href="/admin/reports/<%= r.id %>">Open</a></td></tr>
+    <% } %></tbody>
+  </table></div>
+  <% } %>
+</section>
+<%- include('../partials/foot') %>

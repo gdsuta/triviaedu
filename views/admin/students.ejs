@@ -1,0 +1,17 @@
+<%- include('../partials/head') %>
+<section class="card">
+  <div class="card-head"><h3>Students</h3><a class="btn btn-sm" href="/admin/students/new">+ Add student</a></div>
+  <% if (!students.length) { %><div class="empty">No students yet.</div><% } else { %>
+  <div class="table-wrap"><table class="table">
+    <thead><tr><th>Name</th><th>Grade</th><th>School</th><th>Parent</th><th>Tutors</th></tr></thead>
+    <tbody><% for (const s of students) { %>
+      <tr class="<%= s.is_active ? '' : 'dim' %>">
+        <td><a href="/admin/students/<%= s.id %>"><%= s.name %></a></td><td><%= s.grade || '—' %></td><td><%= s.school || '—' %></td>
+        <td><%= s.parent_name || '—' %><% if (s.parent_phone) { %> <span class="muted small"><%= s.parent_phone %></span><% } %></td>
+        <td><%= s.tutors || '—' %></td>
+      </tr>
+    <% } %></tbody>
+  </table></div>
+  <% } %>
+</section>
+<%- include('../partials/foot') %>

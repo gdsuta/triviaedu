@@ -1,0 +1,33 @@
+<%- include('../partials/head') %>
+<section class="card">
+  <div class="card-head">
+    <h3>Progress Report · <%= d.periodLabel(period) %></h3>
+    <%- include('../partials/month-nav', { extra: '' }) %>
+  </div>
+  <p class="muted small">Write one report per student and subject each month. Save a draft anytime; submit when it's ready for parents.</p>
+  <% if (!assignments.length) { %>
+    <div class="empty">No students assigned to you yet.</div>
+  <% } else { %>
+  <div class="table-wrap">
+    <table class="table">
+      <thead><tr><th>Student</th><th>Subject</th><th>Sessions this month</th><th>Report</th><th></th></tr></thead>
+      <tbody>
+      <% for (const a of assignments) { const k = a.student_id + '|' + a.subject; const r = map[k]; const c = cmap[k]; %>
+        <tr>
+          <td><%= a.student_name %></td>
+          <td><%= a.subject %></td>
+          <td><%= c ? c.n + ' (' + d.fmtHours(c.minutes) + ' h)' : '0' %></td>
+          <td><% if (!r) { %><span class="badge">not started</span><% } else { %><span class="badge b-<%= r.status === 'submitted' ? 'approved' : 'pending' %>"><%= r.status %></span><% } %></td>
+          <td class="right">
+            <a class="btn btn-sm <%= r && r.status === 'submitted' ? 'btn-ghost' : '' %>" href="/tutor/reports/edit?month=<%= period %>&student=<%= a.student_id %>&subject=<%= encodeURIComponent(a.subject) %>">
+              <%= !r ? 'Write' : r.status === 'submitted' ? 'View' : 'Continue' %>
+            </a>
+          </td>
+        </tr>
+      <% } %>
+      </tbody>
+    </table>
+  </div>
+  <% } %>
+</section>
+<%- include('../partials/foot') %>

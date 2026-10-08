@@ -1,0 +1,11 @@
+<% const id = lang === 'id'; %>
+<section class="cta">
+  <div>
+    <h2><%= id ? 'Daftar sekarang' : 'Ready to find a tutor?' %></h2>
+    <p><%= id ? 'Hubungi kami lewat WhatsApp atau telepon, dan kami bantu pilihkan program yang sesuai.' : 'Tell us the curriculum, subject and grade, and we will match you with a tutor.' %></p>
+  </div>
+  <div class="cta-actions">
+    <a class="btn" href="<%= contact.whatsappHref %>" rel="noopener" target="_blank">WhatsApp <%= contact.phoneDisplay %></a>
+    <a class="btn btn-ghost" href="<%= contact.phoneHref %>"><%= id ? 'Telepon' : 'Call us' %></a>
+  </div>
+</section>

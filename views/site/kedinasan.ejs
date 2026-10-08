@@ -1,0 +1,31 @@
+<%- include('partials/head') %>
+<section class="page-hero">
+  <div class="site-wrap">
+    <p class="eyebrow">Sekolah Tinggi Kedinasan</p>
+    <h1>Les Ujian Masuk Sekolah Kedinasan</h1>
+    <p class="lead">Mau langsung kerja setelah kuliah? Sekolah Tinggi Kedinasan bisa jadi pilihan.</p>
+  </div>
+</section>
+<div class="site-wrap">
+  <section class="section split-2">
+    <div>
+      <img class="photo" src="/img/site/kedinasan.jpg" alt="Ilustrasi taruna sekolah kedinasan" width="830" height="452" loading="lazy">
+    </div>
+    <div>
+      <div class="panel">
+        <h3>Persiapan ujian masuk</h3>
+        <ul class="chips">
+          <% for (const s of ['PKN STAN', 'STIS', 'AKPOL', 'STIN', 'IPDN', 'Sekolah kedinasan lainnya']) { %><li><%= s %></li><% } %>
+        </ul>
+        <h3>Program les online privat dan semi-privat</h3>
+        <ul class="ticks">
+          <li>Online dengan Google Meet atau Zoom, 2 jam per sesi</li>
+          <li>Belajar privat 1 murid, atau semi-privat dengan 2 hingga 5 murid</li>
+          <li>Dipandu oleh pengajar terbaik, lulusan S1 dan S2</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <%- include('partials/cta') %>
+</div>
+<%- include('partials/foot') %>

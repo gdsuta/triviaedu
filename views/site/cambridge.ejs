@@ -1,0 +1,36 @@
+<%- include('partials/head') %>
+<section class="page-hero">
+  <div class="site-wrap">
+    <p class="eyebrow">Cambridge International</p>
+    <h1>Cambridge Tuition</h1>
+    <p class="lead">Private tuition for Cambridge Primary, Lower Secondary Checkpoint, IGCSE, O Level, AS Level and A Level students.</p>
+  </div>
+</section>
+<div class="site-wrap">
+  <section class="section split-2">
+    <div class="prose">
+      <h3>Cambridge Primary</h3>
+      <p>For learners aged 5 to 11. It develops young learners who are confident, responsible, reflective, innovative and engaged, with assessment that proves and improves learning.</p>
+      <h3>Cambridge Lower Secondary</h3>
+      <p>For learners aged 11 to 14. Schools can shape the programme around how they want their students to learn.</p>
+      <h3>Cambridge Upper Secondary</h3>
+      <p>For learners aged 14 to 16, with two routes: <strong>Cambridge IGCSE</strong> and <strong>Cambridge O Level</strong>.</p>
+      <h3>Cambridge AS &amp; A Level</h3>
+      <p>Typically for learners aged 16 to 19 who need advanced study to prepare for university and higher education.</p>
+    </div>
+    <div>
+      <div class="panel">
+        <h3>Subjects we teach for Cambridge</h3>
+        <ul class="chips">
+          <% for (const s of ['Accounting', 'Art', 'Bahasa Indonesia', 'Biology', 'Business Studies', 'Chemistry', 'Computer Science', 'Economics', 'English Language and Literature', 'Geography', 'German', 'ICT', 'Mathematics', 'Physics', 'Science']) { %>
+            <li><%= s %></li>
+          <% } %>
+        </ul>
+        <p>Our tutors help with subject content, school tasks and exam preparation. Softcopies of IGCSE, O Level, AS Level and A Level <strong>past exam papers</strong> are also available.</p>
+      </div>
+      <p class="small muted">Choosing between A Levels and the IB Diploma? Read our <a href="/ib-or-a-level">short guide</a>.</p>
+    </div>
+  </section>
+  <%- include('partials/cta') %>
+</div>
+<%- include('partials/foot') %>

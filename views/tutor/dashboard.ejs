@@ -1,0 +1,49 @@
+<%- include('../partials/head') %>
+<section class="card">
+  <div class="card-head">
+    <h3>My Calendar</h3>
+    <%- include('../partials/month-nav', { extra: '' }) %>
+  </div>
+  <div class="cal">
+    <div class="cal-head"><% for (const n of ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']) { %><span><%= n %></span><% } %></div>
+    <% for (const week of weeks) { %>
+      <div class="cal-row">
+      <% for (const c of week) { const ev = byDate[c.date] || []; %>
+        <a class="cal-cell <%= c.inMonth ? '' : 'out' %> <%= c.date === todayIso ? 'today' : '' %> <%= c.date === selected ? 'sel' : '' %>"
+           href="?month=<%= period %>&day=<%= c.date %>">
+          <span class="num"><%= c.day %></span>
+          <% for (const e of ev.slice(0, 2)) { %><span class="chip s-<%= e.status %>"><%= e.start_time %> <%= e.student_name.split(' ')[0] %></span><% } %>
+          <% if (ev.length > 2) { %><span class="more">+<%= ev.length - 2 %> more</span><% } %>
+          <% if (ev.length) { %><span class="dot"></span><% } %>
+        </a>
+      <% } %>
+      </div>
+    <% } %>
+  </div>
+  <div class="day-panel">
+    <div class="day-title">
+      <strong><%= d.fmtDate(selected) %></strong>
+      <% if (selected <= todayIso) { %><a class="btn btn-sm" href="/tutor/timesheet/new?date=<%= selected %>">+ Log session</a><% } %>
+    </div>
+    <% if (!dayEvents.length) { %>
+      <p class="muted">No sessions on this day.</p>
+    <% } else { %>
+      <ul class="events">
+      <% for (const e of dayEvents) { %>
+        <li><span class="time"><%= e.start_time %>–<%= e.end_time %></span> <%= e.student_name %> · <%= e.subject %> <span class="badge b-<%= e.status %>"><%= e.status %></span></li>
+      <% } %>
+      </ul>
+    <% } %>
+  </div>
+</section>
+
+<section class="card">
+  <div class="card-head"><h3>Summary · <%= d.periodLabel(period) %></h3></div>
+  <div class="stats">
+    <div class="stat"><span>Total activities</span><strong><%= summary.activities %></strong><small>sessions logged</small></div>
+    <div class="stat"><span>Total hours</span><strong><%= d.fmtHours(summary.minutes) %></strong><small><%= d.fmtHours(summary.approved_minutes) %> approved</small></div>
+    <div class="stat"><span>Awaiting review</span><strong><%= summary.pending %></strong><small>pending sessions</small></div>
+    <div class="stat"><span>My students</span><strong><%= studentCount %></strong><small>assigned to you</small></div>
+  </div>
+</section>
+<%- include('../partials/foot') %>

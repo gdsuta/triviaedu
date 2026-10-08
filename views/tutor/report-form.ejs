@@ -1,0 +1,39 @@
+<%- include('../partials/head') %>
+<% const locked = report.status === 'submitted'; %>
+<section class="card narrow">
+  <a class="back" href="/tutor/reports?month=<%= period %>">← All reports</a>
+  <h3><%= asg.student_name %> · <%= asg.subject %></h3>
+  <p class="muted"><%= d.periodLabel(period) %> · <%= sessions.length %> session(s) this month
+    <% if (locked) { %> · <span class="badge b-approved">submitted</span><% } %></p>
+  <% if (sessions.length) { %>
+    <details class="sessions-ref"><summary>Sessions this month</summary>
+      <ul><% for (const s of sessions) { %><li><%= d.fmtDate(s.session_date) %>, <%= s.start_time %>–<%= s.end_time %><%= s.topic ? ': ' + s.topic : '' %></li><% } %></ul>
+    </details>
+  <% } %>
+  <form method="post" action="/tutor/reports" class="stack">
+    <input type="hidden" name="_csrf" value="<%= csrf %>">
+    <input type="hidden" name="period" value="<%= period %>">
+    <input type="hidden" name="student_id" value="<%= asg.student_id %>">
+    <input type="hidden" name="subject" value="<%= asg.subject %>">
+    <fieldset class="rating" <%= locked ? 'disabled' : '' %>>
+      <legend>Overall progress</legend>
+      <% const labels = ['Needs a lot of support', 'Needs support', 'On track', 'Good', 'Excellent']; %>
+      <% for (let i = 1; i <= 5; i++) { %>
+        <label title="<%= labels[i-1] %>"><input type="radio" name="rating" value="<%= i %>" <%= report.rating === i ? 'checked' : '' %>><span><%= i %></span><small><%= labels[i-1] %></small></label>
+      <% } %>
+    </fieldset>
+    <label>Topics covered <textarea name="covered" rows="3" <%= locked ? 'disabled' : '' %>><%= report.covered || '' %></textarea></label>
+    <label>Strengths <textarea name="strengths" rows="3" <%= locked ? 'disabled' : '' %>><%= report.strengths || '' %></textarea></label>
+    <label>Areas to improve <textarea name="improvements" rows="3" <%= locked ? 'disabled' : '' %>><%= report.improvements || '' %></textarea></label>
+    <label>Next steps / recommendations <textarea name="next_steps" rows="3" <%= locked ? 'disabled' : '' %>><%= report.next_steps || '' %></textarea></label>
+    <% if (!locked) { %>
+    <div class="actions">
+      <button class="btn btn-ghost" name="action" value="draft">Save draft</button>
+      <button class="btn" name="action" value="submit" data-confirm="Submit this report? You won't be able to edit it afterwards.">Submit report</button>
+    </div>
+    <% } else { %>
+      <p class="muted small">Need to change something? Ask an admin to reopen this report.</p>
+    <% } %>
+  </form>
+</section>
+<%- include('../partials/foot') %>

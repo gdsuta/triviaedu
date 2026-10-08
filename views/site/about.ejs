@@ -1,0 +1,28 @@
+<%- include('partials/head') %>
+<section class="page-hero">
+  <div class="site-wrap">
+    <p class="eyebrow">Company profile</p>
+    <h1>About Trivia Education</h1>
+    <p class="lead">Private tutoring for international school students in Indonesia since <%= contact.founded %>.</p>
+  </div>
+</section>
+<div class="site-wrap">
+  <section class="section split-2">
+    <div class="prose">
+      <p>Trivia Education was founded in <%= contact.founded %> by professional tutors teaching international school students in Indonesia. We give private tuition online, and at the student’s home in Jakarta and the surrounding areas.</p>
+      <p>We provide English-speaking tutors for international school students who learn the IB, Cambridge and Indonesian national curricula. Our tutors have teaching experience at international schools and in private tuition. Study can be fun at home or online with a private system: one tutor for one student.</p>
+      <p>Learn more about <a href="/tutors">our tutors</a>, <a href="/students">our students</a> and <a href="/locations">where we teach</a>.</p>
+    </div>
+    <div class="panel">
+      <h3>Contact us</h3>
+      <ul class="plain">
+        <li>Phone: <a href="<%= contact.phoneHref %>"><%= contact.phoneDisplay %></a></li>
+        <li>WhatsApp: <a href="<%= contact.whatsappHref %>" rel="noopener" target="_blank"><%= contact.phoneDisplay %></a></li>
+        <li>Email: <a href="mailto:<%= contact.email %>"><%= contact.email %></a></li>
+        <li><%= contact.company %><br><%= contact.address %></li>
+      </ul>
+    </div>
+  </section>
+  <%- include('partials/cta') %>
+</div>
+<%- include('partials/foot') %>

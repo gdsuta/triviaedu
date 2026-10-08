@@ -1,0 +1,42 @@
+</main>
+<footer class="site-footer">
+  <div class="site-wrap footer-grid">
+    <div>
+      <a class="brand" href="/">
+        <img src="/img/logo-mark.svg" alt="" width="34" height="34">
+        <span><strong>Trivia</strong> Education</span>
+      </a>
+      <p class="muted small">Home and online private tutoring for IB, Cambridge and national curriculum students since <%= contact.founded %>.</p>
+    </div>
+    <div>
+      <h4>Programs</h4>
+      <ul class="plain">
+        <% for (const p of nav.programs) { %><li><a href="<%= p.path %>"><%= p.label %></a></li><% } %>
+      </ul>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <ul class="plain">
+        <% for (const p of nav.main) { %><li><a href="<%= p.path %>"><%= p.label %></a></li><% } %>
+        <li><a href="/login">Tutor &amp; admin login</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul class="plain">
+        <li>Phone: <a href="<%= contact.phoneHref %>"><%= contact.phoneDisplay %></a></li>
+        <li>WhatsApp: <a href="<%= contact.whatsappHref %>" rel="noopener" target="_blank"><%= contact.phoneDisplay %></a></li>
+        <li>Email: <a href="mailto:<%= contact.email %>"><%= contact.email %></a></li>
+        <li class="muted small"><%= contact.company %><br><%= contact.address %></li>
+      </ul>
+    </div>
+  </div>
+  <p class="site-wrap copyright muted small">© <%= new Date().getFullYear() %> <%= app.name %> · triviaedu.com</p>
+</footer>
+<a class="wa-float" href="<%= contact.whatsappHref %>" rel="noopener" target="_blank" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M20 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.2A8.5 8.5 0 1 1 20 11.5z"/><path d="M9 8.5c0 3.5 2.5 6.5 6.5 6.5l1-1.5-2-1-1 1c-1.2-.5-2.5-1.8-3-3l1-1-1-2z"/></svg>
+  <span>WhatsApp</span>
+</a>
+<script src="/js/app.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "triviaedu",
+  "version": "1.0.0",
+  "description": "Trivia Education tutor & admin portal (triviaedu.com)",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "migrate": "node src/db/migrate.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^18.0.6",
+    "ejs": "^7.0.1",
+    "express": "^4.22.3",
+    "express-mysql-session": "^3.0.3",
+    "express-session": "^1.19.0",
+    "helmet": "^8.3.0",
+    "mysql2": "^3.24.5"
+  }
+}

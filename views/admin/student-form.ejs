@@ -1,0 +1,47 @@
+<%- include('../partials/head') %>
+<a class="back" href="/admin/students">← Students</a>
+<div class="grid-2">
+<section class="card">
+  <h3><%= s.id ? 'Student details' : 'Add student' %></h3>
+  <% if (errors.length) { %><div class="alert alert-error"><% for (const e of errors) { %><div><%= e %></div><% } %></div><% } %>
+  <form method="post" action="/admin/students<%= s.id ? '/' + s.id : '' %>" class="stack">
+    <input type="hidden" name="_csrf" value="<%= csrf %>">
+    <label>Full name <input name="name" value="<%= s.name || '' %>" required maxlength="120"></label>
+    <div class="grid-2 tight">
+      <label>Grade / class <input name="grade" value="<%= s.grade || '' %>" placeholder="e.g. Grade 11"></label>
+      <label>School <input name="school" value="<%= s.school || '' %>"></label>
+    </div>
+    <label>Parent / guardian <input name="parent_name" value="<%= s.parent_name || '' %>"></label>
+    <div class="grid-2 tight">
+      <label>Parent phone <input name="parent_phone" value="<%= s.parent_phone || '' %>"></label>
+      <label>Parent email <input type="email" name="parent_email" value="<%= s.parent_email || '' %>"></label>
+    </div>
+    <label>Notes <textarea name="notes" rows="3"><%= s.notes || '' %></textarea></label>
+    <label class="check"><input type="checkbox" name="is_active" value="1" <%= s.is_active ? 'checked' : '' %>> Active</label>
+    <div class="actions"><button class="btn" type="submit"><%= s.id ? 'Save' : 'Create student' %></button></div>
+  </form>
+</section>
+<% if (s.id) { %>
+<section class="card">
+  <h3>Tutors &amp; subjects</h3>
+  <% if (!assignments.length) { %><p class="muted">No tutor assigned yet.</p><% } else { %>
+  <ul class="list"><% for (const a of assignments) { %>
+    <li class="split"><span><%= a.tutor_name %> <span class="muted">· <%= a.subject %></span></span>
+      <form method="post" action="/admin/assignments/<%= a.id %>/delete" class="inline" data-confirm="Remove this tutor from the student?">
+        <input type="hidden" name="_csrf" value="<%= csrf %>"><button class="btn btn-sm btn-danger-ghost">Remove</button></form></li>
+  <% } %></ul>
+  <% } %>
+  <form method="post" action="/admin/students/<%= s.id %>/assign" class="stack mt">
+    <input type="hidden" name="_csrf" value="<%= csrf %>">
+    <label>Tutor
+      <select name="tutor_id" required><option value="">Choose…</option>
+        <% for (const t of tutors) { %><option value="<%= t.id %>"><%= t.name %><%= t.subjects ? ' — ' + t.subjects : '' %></option><% } %>
+      </select>
+    </label>
+    <label>Subject <input name="subject" required maxlength="120" placeholder="e.g. Physics"></label>
+    <div class="actions"><button class="btn btn-sm" type="submit">Assign tutor</button></div>
+  </form>
+</section>
+<% } %>
+</div>
+<%- include('../partials/foot') %>

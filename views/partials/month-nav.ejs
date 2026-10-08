@@ -1,0 +1,8 @@
+<div class="month-nav">
+  <a class="icon-btn" href="?<%= extra || '' %>month=<%= prev %>" aria-label="Previous month"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></a>
+  <form method="get" class="inline">
+    <% if (typeof hidden !== 'undefined') for (const [k, v] of Object.entries(hidden)) { %><input type="hidden" name="<%= k %>" value="<%= v %>"><% } %>
+    <input type="month" name="month" value="<%= period %>" data-autosubmit aria-label="Month">
+  </form>
+  <a class="icon-btn" href="?<%= extra || '' %>month=<%= next %>" aria-label="Next month"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></a>
+</div>

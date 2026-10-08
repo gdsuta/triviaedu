@@ -1,0 +1,26 @@
+<%- include('../partials/head') %>
+<section class="card">
+  <div class="card-head">
+    <h3>Hours Recap · <%= d.periodLabel(period) %></h3>
+    <div class="row-gap">
+      <%- include('../partials/month-nav', { extra: '' }) %>
+      <a class="btn btn-sm btn-ghost" href="/admin/recap.csv?month=<%= period %>">Download CSV</a>
+    </div>
+  </div>
+  <p class="muted small">Only approved hours count toward the amount. Pending hours are shown so you can review them before closing the month.</p>
+  <% let tH = 0, tA = 0; %>
+  <div class="table-wrap"><table class="table">
+    <thead><tr><th>Tutor</th><th>Sessions</th><th>Approved hours</th><th>Pending hours</th><th>Rate / hr</th><th class="right">Amount</th></tr></thead>
+    <tbody><% for (const r of rows) { const amt = r.approved_minutes / 60 * r.hourly_rate; tH += r.approved_minutes; tA += amt; %>
+      <tr>
+        <td><a href="/admin/timesheets?month=<%= period %>&tutor=<%= r.id %>"><%= r.name %></a></td><td><%= r.sessions %></td>
+        <td><%= d.fmtHours(r.approved_minutes) %></td>
+        <td><% if (r.pending_minutes) { %><span class="badge b-pending"><%= d.fmtHours(r.pending_minutes) %></span><% } else { %>0<% } %></td>
+        <td><%= Number(r.hourly_rate).toLocaleString('id-ID') %></td>
+        <td class="right"><%= app.currency %> <%= Math.round(amt).toLocaleString('id-ID') %></td>
+      </tr>
+    <% } %></tbody>
+    <tfoot><tr><th>Total</th><th></th><th><%= d.fmtHours(tH) %></th><th></th><th></th><th class="right"><%= app.currency %> <%= Math.round(tA).toLocaleString('id-ID') %></th></tr></tfoot>
+  </table></div>
+</section>
+<%- include('../partials/foot') %>

@@ -1,0 +1,37 @@
+<%- include('../partials/head') %>
+<section class="card narrow">
+  <h3><%= title %></h3>
+  <% if (errors.length) { %><div class="alert alert-error"><% for (const e of errors) { %><div><%= e %></div><% } %></div><% } %>
+  <% if (!assignments.length) { %>
+    <div class="empty">You don't have any students assigned yet. Ask an admin to assign students to you.</div>
+  <% } else { %>
+  <form method="post" action="/tutor/timesheet<%= s.id ? '/' + s.id : '' %>" class="stack">
+    <input type="hidden" name="_csrf" value="<%= csrf %>">
+    <label>Student &amp; subject
+      <select name="assignment" required>
+        <option value="">Choose…</option>
+        <% for (const a of assignments) { const v = a.student_id + '|' + a.subject; %>
+          <option value="<%= v %>" <%= s.assignment === v ? 'selected' : '' %>><%= a.student_name %> — <%= a.subject %></option>
+        <% } %>
+      </select>
+    </label>
+    <div class="grid-3">
+      <label>Date <input type="date" name="session_date" value="<%= s.session_date %>" max="<%= d.today() %>" required></label>
+      <label>Start <input type="time" name="start_time" value="<%= s.start_time %>" step="300" required></label>
+      <label>End <input type="time" name="end_time" value="<%= s.end_time %>" step="300" required></label>
+    </div>
+    <fieldset class="seg">
+      <legend>Mode</legend>
+      <label><input type="radio" name="mode" value="online" <%= s.mode !== 'offline' ? 'checked' : '' %>> Online</label>
+      <label><input type="radio" name="mode" value="offline" <%= s.mode === 'offline' ? 'checked' : '' %>> In person</label>
+    </fieldset>
+    <label>Topic covered <input name="topic" value="<%= s.topic || '' %>" maxlength="255" placeholder="e.g. Newton's laws — free body diagrams"></label>
+    <label>Notes (optional) <textarea name="notes" rows="3" maxlength="2000"><%= s.notes || '' %></textarea></label>
+    <div class="actions">
+      <a class="btn btn-ghost" href="/tutor/timesheet">Cancel</a>
+      <button class="btn" type="submit"><%= s.id ? 'Save changes' : 'Log session' %></button>
+    </div>
+  </form>
+  <% } %>
+</section>
+<%- include('../partials/foot') %>

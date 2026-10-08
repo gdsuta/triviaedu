@@ -1,0 +1,67 @@
+<%- include('partials/head') %>
+<section class="hero">
+  <div class="site-wrap hero-inner">
+    <p class="eyebrow">Home &amp; online private tutoring in Indonesia</p>
+    <h1>Private tutors for IB, Cambridge and national curriculum students</h1>
+    <p class="lead">Are you studying the Cambridge or IB curriculum? Preparing for IGCSE, A Level, IB Diploma, TOEFL or IELTS exams? Need a private tutor to help you study at home?</p>
+    <div class="hero-actions">
+      <a class="btn" href="<%= contact.whatsappHref %>" rel="noopener" target="_blank">Chat on WhatsApp</a>
+      <a class="btn btn-ghost" href="/fees">See tuition fees</a>
+    </div>
+  </div>
+</section>
+
+<div class="site-wrap">
+  <section class="section intro">
+    <p>Trivia Education is a home tutoring and online tutoring service in Indonesia for international school students who learn the <strong>IB</strong>, <strong>Cambridge</strong> and <strong>Indonesian national</strong> curricula.</p>
+    <p>We provide English-speaking tutors who have teaching experience at international schools and in private tuition. Study can be fun at home or online with a private system: <strong>one tutor for one student</strong>.</p>
+  </section>
+
+  <section class="section">
+    <h2>Programs</h2>
+    <div class="card-grid">
+      <a class="pcard" href="/ib-tuition"><span class="tag">IB</span><h3>IB Tuition</h3><p>PYP, MYP and Diploma Programme: subject content, IA, Extended Essay and exam preparation.</p></a>
+      <a class="pcard" href="/cambridge-tuition"><span class="tag">Cambridge</span><h3>Cambridge Tuition</h3><p>Primary, Checkpoint, IGCSE, O Level, AS and A Level, with past exam papers.</p></a>
+      <a class="pcard" href="/les-toefl-ielts"><span class="tag">English tests</span><h3>TOEFL &amp; IELTS</h3><p>Prepare for the English test your target university asks for, at home or online.</p></a>
+      <a class="pcard" href="/les-snbt"><span class="tag">Kuliah di PTN</span><h3>Les SNBT &amp; Ujian Mandiri</h3><p>UTBK-SNBT, SIMAK UI, SM ITB, UM UGM and other university entrance exams.</p></a>
+      <a class="pcard" href="/les-sekolah-kedinasan"><span class="tag">Kedinasan</span><h3>Les Sekolah Kedinasan</h3><p>PKN STAN, STIS, AKPOL, STIN, IPDN and other service academies.</p></a>
+      <a class="pcard" href="/les-privat-mahasiswa"><span class="tag">Mahasiswa</span><h3>Les Privat Mahasiswa</h3><p>Calculus, linear algebra, physics, chemistry, economics and more for university students.</p></a>
+    </div>
+  </section>
+
+  <section class="section split-2">
+    <div>
+      <h2>Why study with Trivia Education?</h2>
+      <ul class="ticks">
+        <li>One tutor for one student</li>
+        <li>Tutors speak English well</li>
+        <li>Flexible study time: weekdays or weekends</li>
+        <li>Tuition topics on request</li>
+        <li>Past exam papers provided</li>
+        <li>Guidance for homework, projects, Internal Assessment, quizzes, tests and exams</li>
+        <li>Qualified tutors with experience teaching international school students</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Available subjects</h2>
+      <ul class="chips">
+        <% for (const s of ['Accounting', 'Art', 'Bahasa Indonesia', 'Biology', 'Business and Management', 'Chemistry', 'Design and Technology', 'Economics', 'English', 'Environmental Systems and Societies', 'Extended Essay', 'Geography', 'German', 'ICT', 'Mandarin', 'Mathematics', 'Physics', 'Science', 'Theory of Knowledge']) { %>
+          <li><%= s %></li>
+        <% } %>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>What students say</h2>
+    <div class="quotes">
+      <blockquote><p>“I got A* in IGCSE Math and A in IGCSE Physics. Thanks to the tutors. They gave me guidance how to get full marks in answering exam questions.”</p><cite>Caca, Grade 10, Jakarta</cite></blockquote>
+      <blockquote><p>“I just graduated from my school. My Math, Economics and Chemistry tutors helped me prepare for the IB DP exams and IA.”</p><cite>Ryan, Grade 12, South Jakarta</cite></blockquote>
+      <blockquote><p>“My IGCSE Chemistry exam score is A. Thanks a lot to my tutor. She helped me understand the topics within a year.”</p><cite>Argha, Grade 10, Jakarta</cite></blockquote>
+    </div>
+    <p><a href="/students">More from our students and the schools they attend →</a></p>
+  </section>
+
+  <%- include('partials/cta') %>
+</div>
+<%- include('partials/foot') %>

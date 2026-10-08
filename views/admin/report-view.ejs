@@ -1,0 +1,27 @@
+<%- include('../partials/head') %>
+<a class="back no-print" href="/admin/reports?month=<%= r.period %>">← Reports</a>
+<article class="card narrow report">
+  <div class="report-head">
+    <img src="/img/logo-mark.svg" alt="" width="44" height="44">
+    <div><strong>Trivia Education</strong><div class="muted small">Monthly Progress Report · <%= d.periodLabel(r.period) %></div></div>
+  </div>
+  <dl class="meta">
+    <div><dt>Student</dt><dd><%= r.student_name %></dd></div>
+    <div><dt>Grade / school</dt><dd><%= [r.grade, r.school].filter(Boolean).join(' · ') || '—' %></dd></div>
+    <div><dt>Subject</dt><dd><%= r.subject %></dd></div>
+    <div><dt>Tutor</dt><dd><%= r.tutor_name %></dd></div>
+    <div><dt>Overall progress</dt><dd><%= r.rating ? r.rating + ' / 5' : '—' %></dd></div>
+    <div><dt>Status</dt><dd><%= r.status %></dd></div>
+  </dl>
+  <% for (const [k, label] of [['covered','Topics covered'],['strengths','Strengths'],['improvements','Areas to improve'],['next_steps','Next steps']]) { %>
+    <h4><%= label %></h4><p class="pre"><%= r[k] || '—' %></p>
+  <% } %>
+  <div class="actions no-print">
+    <% if (r.status === 'submitted') { %>
+    <form method="post" action="/admin/reports/<%= r.id %>/reopen" class="inline" data-confirm="Send this report back to the tutor as a draft?">
+      <input type="hidden" name="_csrf" value="<%= csrf %>"><button class="btn btn-ghost">Reopen for edits</button></form>
+    <% } %>
+    <button class="btn" type="button" data-print>Print / save PDF</button>
+  </div>
+</article>
+<%- include('../partials/foot') %>

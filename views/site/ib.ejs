@@ -1,0 +1,34 @@
+<%- include('partials/head') %>
+<section class="page-hero">
+  <div class="site-wrap">
+    <p class="eyebrow">International Baccalaureate</p>
+    <h1>IB Tuition</h1>
+    <p class="lead">Private tuition for IB Primary Years, Middle Years and Diploma Programme students, at home or online.</p>
+  </div>
+</section>
+<div class="site-wrap">
+  <section class="section split-2">
+    <div class="prose">
+      <h3>Primary Years Programme (PYP)</h3>
+      <p>The IB PYP is for students aged 3 to 12. It prepares students to become active, caring, lifelong learners who show respect for themselves and others and can take part in the world around them.</p>
+      <h3>Middle Years Programme (MYP)</h3>
+      <p>The IB MYP is for students aged 11 to 16. Its framework encourages students to make practical connections between their studies and the real world.</p>
+      <h3>Diploma Programme (DP)</h3>
+      <p>The IBDP is a two-year programme for students aged 16 to 19. It gives an internationally accepted qualification for entry into higher education and is recognised by many universities worldwide.</p>
+    </div>
+    <div>
+      <div class="panel">
+        <h3>Subjects we teach for IB PYP, MYP and DP</h3>
+        <ul class="chips">
+          <% for (const s of ['Bahasa Indonesia', 'Biology', 'Business and Management', 'Chemistry', 'Computer Science', 'Economics', 'English Language and Literature', 'Environmental Systems and Societies', 'Mathematics', 'Physics', 'Psychology', 'Science', 'Theory of Knowledge (TOK)']) { %>
+            <li><%= s %></li>
+          <% } %>
+        </ul>
+        <p>Our tutors help with subject content, <strong>Internal Assessment (IA)</strong>, the <strong>Extended Essay (EE)</strong> and exam preparation at <strong>Standard Level (SL)</strong> and <strong>Higher Level (HL)</strong>. IB DP past exam papers are also available.</p>
+      </div>
+      <p class="small muted">Choosing between the IB Diploma and A Levels? Read our <a href="/ib-or-a-level">short guide</a>.</p>
+    </div>
+  </section>
+  <%- include('partials/cta') %>
+</div>
+<%- include('partials/foot') %>

@@ -1,0 +1,31 @@
+<%- include('partials/head') %>
+<section class="page-hero">
+  <div class="site-wrap">
+    <p class="eyebrow">Untuk mahasiswa</p>
+    <h1>Les Privat Mahasiswa</h1>
+    <p class="lead">Ada kesulitan belajar mata kuliah di kampus? Pengajar kami siap membantumu mereview materi, membimbing tugas dan menyiapkan ujian.</p>
+  </div>
+</section>
+<div class="site-wrap">
+  <section class="section split-2">
+    <div>
+      <img class="photo" src="/img/site/mahasiswa.jpg" alt="Mahasiswa belajar di perpustakaan" width="1200" height="800" loading="lazy">
+    </div>
+    <div>
+      <div class="panel">
+        <h3>Mata kuliah</h3>
+        <ul class="chips">
+          <% for (const s of ['Kalkulus', 'Aljabar Linier', 'Matematika Diskret', 'Metode Numerik', 'Fisika Dasar', 'Kimia Dasar', 'Ekonomi', 'Bisnis', 'Mata kuliah lain sesuai permintaan']) { %><li><%= s %></li><% } %>
+        </ul>
+        <h3>Program les online privat dan semi-privat</h3>
+        <ul class="ticks">
+          <li>Online dengan Google Meet atau Zoom, 90 menit per sesi</li>
+          <li>Belajar privat 1 mahasiswa, atau semi-privat dengan 2 hingga 5 mahasiswa</li>
+          <li>Dipandu oleh pengajar terbaik, lulusan S1 dan S2</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <%- include('partials/cta') %>
+</div>
+<%- include('partials/foot') %>

@@ -1,0 +1,17 @@
+<%- include('../partials/head') %>
+<section class="card">
+  <div class="card-head"><h3>Tutors</h3><a class="btn btn-sm" href="/admin/tutors/new">+ Add tutor</a></div>
+  <% if (!tutors.length) { %><div class="empty">No tutors yet. Add your first tutor to get started.</div><% } else { %>
+  <div class="table-wrap"><table class="table">
+    <thead><tr><th>Name</th><th>Email</th><th>Subjects</th><th>Students</th><th>Rate / hr</th><th>Status</th></tr></thead>
+    <tbody><% for (const t of tutors) { %>
+      <tr class="<%= t.is_active ? '' : 'dim' %>">
+        <td><a href="/admin/tutors/<%= t.id %>"><%= t.name %></a></td><td><%= t.email %></td><td><%= t.subjects || '—' %></td>
+        <td><%= t.assignment_count %></td><td><%= app.currency %> <%= Number(t.hourly_rate).toLocaleString('id-ID') %></td>
+        <td><span class="badge <%= t.is_active ? 'b-approved' : '' %>"><%= t.is_active ? 'active' : 'inactive' %></span></td>
+      </tr>
+    <% } %></tbody>
+  </table></div>
+  <% } %>
+</section>
+<%- include('../partials/foot') %>

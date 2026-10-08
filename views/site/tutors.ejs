@@ -1,0 +1,26 @@
+<%- include('partials/head') %>
+<section class="page-hero">
+  <div class="site-wrap">
+    <p class="eyebrow">Our tutors</p>
+    <h1>English-speaking tutors with international school experience</h1>
+    <p class="lead">Our Indonesian tutors speak English well and have experience teaching international school students.</p>
+  </div>
+</section>
+<div class="site-wrap">
+  <section class="section">
+    <h2>Where our tutors studied</h2>
+    <p class="muted">Our tutors hold bachelor’s and master’s degrees from universities including:</p>
+    <ul class="chips">
+      <% for (const u of ['Deakin University, Melbourne', 'Institut Pertanian Bogor (IPB)', 'Institut Teknologi Bandung (ITB)', 'Politeknik Negeri Jakarta', 'Sampoerna University', 'UIN Malang', 'Universitas Gadjah Mada (UGM)', 'Universitas Indonesia (UI)', 'Universitas Kristen Indonesia (UKI)', 'Universitas Negeri Jakarta (UNJ)', 'Universitas Negeri Malang (UNM)', 'Universitas Padjadjaran (UNPAD)', 'Universitas Pelita Harapan (UPH)', 'Universitas Pendidikan Indonesia (UPI)', 'Universitas Terbuka', 'Universitas Trisakti', 'University College London', 'and other universities']) { %>
+        <li><%= u %></li>
+      <% } %>
+    </ul>
+  </section>
+  <section class="section panel">
+    <h3>Already a Trivia Education tutor?</h3>
+    <p>Sign in to the tutor portal to set your available time, log your sessions and write progress reports.</p>
+    <a class="btn" href="/login">Tutor login</a>
+  </section>
+  <%- include('partials/cta') %>
+</div>
+<%- include('partials/foot') %>

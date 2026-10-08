@@ -1,0 +1,20 @@
+<%- include('../partials/head') %>
+<div class="auth-card">
+  <div class="auth-brand">
+    <img src="/img/logo-mark.svg" alt="" width="52" height="52">
+    <div><strong>Trivia</strong> Education<small>Tutor &amp; Admin Portal</small></div>
+  </div>
+  <form method="post" action="/login" class="stack">
+    <input type="hidden" name="_csrf" value="<%= csrf %>">
+    <label>Email
+      <input type="email" name="email" value="<%= email %>" autocomplete="username" required autofocus>
+    </label>
+    <label>Password
+      <input type="password" name="password" autocomplete="current-password" required>
+    </label>
+    <button class="btn btn-block" type="submit">Sign in</button>
+  </form>
+  <p class="muted small center">Forgot your password? Ask your Trivia Education admin to reset it.</p>
+  <p class="small center"><a href="/">← Back to triviaedu.com</a></p>
+</div>
+<%- include('../partials/foot') %>

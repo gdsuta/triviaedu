@@ -1,0 +1,46 @@
+<%- include('../partials/head') %>
+<section class="card">
+  <div class="card-head">
+    <h3>Tutoring Timesheet</h3>
+    <div class="row-gap">
+      <%- include('../partials/month-nav', { extra: '' }) %>
+      <a class="btn btn-sm" href="/tutor/timesheet/new">+ Log session</a>
+    </div>
+  </div>
+  <div class="stats small-stats">
+    <div class="stat"><span>Sessions</span><strong><%= rows.length %></strong></div>
+    <div class="stat"><span>Hours logged</span><strong><%= d.fmtHours(totals.all) %></strong></div>
+    <div class="stat"><span>Hours approved</span><strong><%= d.fmtHours(totals.approved) %></strong></div>
+  </div>
+  <% if (!rows.length) { %>
+    <div class="empty">No sessions logged for <%= d.periodLabel(period) %>.</div>
+  <% } else { %>
+  <div class="table-wrap">
+    <table class="table">
+      <thead><tr><th>Date</th><th>Time</th><th>Student</th><th>Subject</th><th>Topic</th><th>Hours</th><th>Status</th><th></th></tr></thead>
+      <tbody>
+      <% for (const r of rows) { %>
+        <tr>
+          <td><%= d.fmtDate(r.session_date) %></td>
+          <td class="nowrap"><%= r.start_time %>–<%= r.end_time %> <span class="muted small"><%= r.mode %></span></td>
+          <td><%= r.student_name %></td>
+          <td><%= r.subject %></td>
+          <td><%= r.topic || '—' %></td>
+          <td><%= d.fmtHours(r.minutes) %></td>
+          <td><span class="badge b-<%= r.status %>"><%= r.status %></span><% if (r.admin_note) { %><div class="muted small"><%= r.admin_note %></div><% } %></td>
+          <td class="nowrap right">
+            <% if (r.status !== 'approved') { %>
+              <a class="btn btn-sm btn-ghost" href="/tutor/timesheet/<%= r.id %>/edit">Edit</a>
+              <form method="post" action="/tutor/timesheet/<%= r.id %>/delete" class="inline" data-confirm="Remove this session?">
+                <input type="hidden" name="_csrf" value="<%= csrf %>"><button class="btn btn-sm btn-danger-ghost">Delete</button>
+              </form>
+            <% } %>
+          </td>
+        </tr>
+      <% } %>
+      </tbody>
+    </table>
+  </div>
+  <% } %>
+</section>
+<%- include('../partials/foot') %>

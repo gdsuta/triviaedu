@@ -1,0 +1,42 @@
+<%- include('../partials/head') %>
+<a class="back" href="/admin/tutors">← Tutors</a>
+<div class="grid-2">
+<section class="card">
+  <h3><%= t.id ? 'Tutor details' : 'Add tutor' %></h3>
+  <% if (errors.length) { %><div class="alert alert-error"><% for (const e of errors) { %><div><%= e %></div><% } %></div><% } %>
+  <form method="post" action="/admin/tutors<%= t.id ? '/' + t.id : '' %>" class="stack">
+    <input type="hidden" name="_csrf" value="<%= csrf %>">
+    <label>Full name <input name="name" value="<%= t.name || '' %>" required maxlength="120"></label>
+    <label>Email (login) <input type="email" name="email" value="<%= t.email || '' %>" required></label>
+    <label>Phone / WhatsApp <input name="phone" value="<%= t.phone || '' %>"></label>
+    <label>Subjects <input name="subjects" value="<%= t.subjects || '' %>" placeholder="Physics, Mathematics"></label>
+    <label>Hourly rate (<%= app.currency %>) <input type="number" name="hourly_rate" min="0" step="1000" value="<%= t.hourly_rate || 0 %>"></label>
+    <label class="check"><input type="checkbox" name="is_active" value="1" <%= t.is_active ? 'checked' : '' %>> Active (can sign in)</label>
+    <div class="actions"><button class="btn" type="submit"><%= t.id ? 'Save' : 'Create tutor' %></button></div>
+  </form>
+  <% if (t.id) { %>
+  <form method="post" action="/admin/tutors/<%= t.id %>/reset-password" data-confirm="Generate a new temporary password for this tutor?" class="mt">
+    <input type="hidden" name="_csrf" value="<%= csrf %>"><button class="btn btn-ghost btn-sm">Reset password</button>
+  </form>
+  <% } %>
+</section>
+<% if (t.id) { %>
+<section class="card">
+  <h3>Students</h3>
+  <% if (!assignments.length) { %><p class="muted">No students assigned. Assign from a student's page.</p><% } else { %>
+  <ul class="list"><% for (const a of assignments) { %><li><a href="/admin/students/<%= a.student_id %>"><%= a.student_name %></a> <span class="muted">· <%= a.subject %></span></li><% } %></ul>
+  <% } %>
+  <h3 class="mt">Weekly availability</h3>
+  <% if (!set.size) { %><p class="muted">Not filled in yet.</p><% } else { %>
+  <ul class="list"><% d.DAYS.forEach((day, i) => {
+      const slots = d.SLOTS.filter(s => set.has((i + 1) + '|' + s.start));
+      if (!slots.length) return;
+      const ranges = []; for (const s of slots) { const last = ranges[ranges.length - 1]; if (last && last[1] === s.start) last[1] = s.end; else ranges.push([s.start, s.end]); } %>
+      <li><strong><%= day %></strong>: <%= ranges.map(r => r[0] + '–' + r[1]).join(', ') %></li>
+  <% }) %></ul>
+  <% } %>
+  <a class="btn btn-sm btn-ghost mt" href="/admin/timesheets?tutor=<%= t.id %>">View timesheet</a>
+</section>
+<% } %>
+</div>
+<%- include('../partials/foot') %>

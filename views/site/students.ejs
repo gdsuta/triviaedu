@@ -1,0 +1,52 @@
+<%- include('partials/head') %>
+<%
+  const testimonials = [
+    ['Thanks to my Math tutor. I got A in IGCSE Additional Math exam.', 'Asya, Grade 10, East Jakarta'],
+    ['I just graduated from my school. My Math, Economics and Chemistry tutors helped me prepare for the IB DP exams and IA.', 'Ryan, Grade 12, South Jakarta'],
+    ['I enjoy studying with a tutor at home. My scores in IB DP Business and Management are getting better.', 'Ahmad, Grade 12, South Jakarta'],
+    ['My IGCSE Chemistry exam score is A. Thanks a lot to my tutor. She helped me understand the topics within a year.', 'Argha, Grade 10, Jakarta'],
+    ['I got A* in IGCSE Math and A in IGCSE Physics. Thanks to the tutors. They gave me guidance how to get full marks in answering exam questions.', 'Caca, Grade 10, Jakarta'],
+  ];
+  const schools = {
+    'Jakarta': ['ACS Jakarta', 'Australian Independent School', 'Bina Bangsa School', 'Bina Tunas Bangsa School', 'Binus School Simprug', 'Gandhi Memorial Intercontinental School', 'Global Sevilla School Pulomas', 'Global Sevilla School Puri Indah', 'Heritage School', 'Highfield Secondary School Jakarta', 'Highscope School', 'Ichthus School', 'Ipeka Integrated Christian School', 'Jakarta Intercultural School (JIS)', 'Mentari Intercultural School Jakarta', 'Morning Star Academy', 'Penabur International', 'Raffles Christian School Kelapa Gading', 'Sampoerna Academy', 'Sekolah Bukit Sion', 'Sekolah Cikal', 'Sekolah Harapan Bangsa', 'Sekolah Lentera International', 'Sekolah Pangudi Luhur', 'Sekolah Pelita Harapan Kemang Village', 'Singapore Intercultural School Bona Vista', 'Singapore Intercultural School Kelapa Gading', 'Singapore Intercultural School PIK', 'Tunas Muda School', 'Tzu Chi School', 'Universal School'],
+    'Tangerang & South Tangerang': ['Binus School Serpong', 'British School Jakarta', 'Global Jaya School', 'Insan Cendekia Madani', 'Jakarta Nanyang School', 'Mentari Intercultural School Bintaro', 'Mutiara Harapan Islamic School', 'Santa Laurensia', 'SMA Al Azhar BSD', 'Sekolah Pelita Harapan Lippo Village', 'Sinarmas World Academy', 'SMAN 1 Tangerang', 'Tunas Bangsa Gading Serpong'],
+    'Bekasi': ['Binus School Bekasi', 'Highfield Secondary School Bekasi', 'Sekolah Victory Plus'],
+    'Depok': ['Lazuardi GIS', 'Springfield Cibubur', 'SMAN 1 Depok', 'SMP Karakter'],
+    'Bogor': ['Sekolah Alam Cikeas', 'Sekolah Bogor Raya', 'Sekolah Pelita Harapan Sentul'],
+    'Bandung': ['Bina Bakti Matius', 'Bina Bangsa School Bandung', 'Al Irsyad School'],
+    'Surabaya': ['Sekolah Ciputra', 'Sekolah Cita Hati', 'Mawar Sharon Christian School'],
+    'Bali': ['Bali International School', 'Dyatmika School'],
+    'Malaysia': ['St Joseph International School Kuching', 'King Henry VIII College', 'Kolej Tuanku Ja’afar', 'Poi Lam Secondary School Ipoh'],
+    'United Kingdom': ['Kings College Oxford', 'Fettes College'],
+  };
+%>
+<section class="page-hero">
+  <div class="site-wrap">
+    <p class="eyebrow">Our students</p>
+    <h1>Students we have taught</h1>
+    <p class="lead">Our tutors have taught international school students of many nationalities, including students from India, Indonesia, Malaysia, Pakistan, South Korea and Sri Lanka.</p>
+  </div>
+</section>
+<div class="site-wrap">
+  <section class="section">
+    <h2>What students say</h2>
+    <div class="quotes">
+      <% for (const [q, who] of testimonials) { %>
+        <blockquote><p>“<%= q %>”</p><cite><%= who %></cite></blockquote>
+      <% } %>
+    </div>
+  </section>
+  <section class="section">
+    <h2>Schools our students attend</h2>
+    <div class="school-grid">
+      <% for (const [place, list] of Object.entries(schools)) { %>
+        <div class="panel">
+          <h3><%= place %></h3>
+          <ul class="plain"><% for (const s of list) { %><li><%= s %></li><% } %></ul>
+        </div>
+      <% } %>
+    </div>
+  </section>
+  <%- include('partials/cta') %>
+</div>
+<%- include('partials/foot') %>

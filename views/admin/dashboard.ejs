@@ -1,0 +1,21 @@
+<%- include('../partials/head') %>
+<div class="page-head"><h2>Overview · <%= d.periodLabel(period) %></h2></div>
+<div class="stats">
+  <a class="stat link" href="/admin/timesheets?status=pending"><span>Pending sessions</span><strong><%= stats.pending %></strong><small>awaiting your review</small></a>
+  <div class="stat"><span>Approved hours</span><strong><%= d.fmtHours(stats.approved_minutes) %></strong><small>this month</small></div>
+  <a class="stat link" href="/admin/tutors"><span>Active tutors</span><strong><%= stats.tutors %></strong><small>teaching now</small></a>
+  <a class="stat link" href="/admin/students"><span>Active students</span><strong><%= stats.students %></strong><small>enrolled</small></a>
+  <a class="stat link" href="/admin/reports"><span>Reports submitted</span><strong><%= stats.reports %></strong><small>this month</small></a>
+</div>
+<section class="card">
+  <div class="card-head"><h3>Latest sessions to review</h3><a class="btn btn-sm btn-ghost" href="/admin/timesheets?status=pending">See all</a></div>
+  <% if (!recent.length) { %><div class="empty">Nothing waiting. Nice.</div><% } else { %>
+  <div class="table-wrap"><table class="table">
+    <thead><tr><th>Date</th><th>Tutor</th><th>Student</th><th>Subject</th><th>Hours</th></tr></thead>
+    <tbody><% for (const r of recent) { %>
+      <tr><td><%= d.fmtDate(r.session_date) %> <span class="muted small"><%= r.start_time %></span></td><td><%= r.tutor_name %></td><td><%= r.student_name %></td><td><%= r.subject %></td><td><%= d.fmtHours(r.minutes) %></td></tr>
+    <% } %></tbody>
+  </table></div>
+  <% } %>
+</section>
+<%- include('../partials/foot') %>

@@ -1,0 +1,42 @@
+<%- include('../partials/head') %>
+<section class="card">
+  <div class="card-head">
+    <h3>Timesheet Review</h3>
+    <%- include('../partials/month-nav', { extra: (status ? 'status=' + status + '&' : '') + (tutorId ? 'tutor=' + tutorId + '&' : ''), hidden: Object.assign({}, status ? { status } : {}, tutorId ? { tutor: tutorId } : {}) }) %>
+  </div>
+  <form method="get" class="filters">
+    <input type="hidden" name="month" value="<%= period %>">
+    <select name="status" data-autosubmit>
+      <option value="">All statuses</option>
+      <% for (const st of ['pending','approved','rejected']) { %><option <%= status === st ? 'selected' : '' %>><%= st %></option><% } %>
+    </select>
+    <select name="tutor" data-autosubmit>
+      <option value="">All tutors</option>
+      <% for (const t of tutors) { %><option value="<%= t.id %>" <%= tutorId === t.id ? 'selected' : '' %>><%= t.name %></option><% } %>
+    </select>
+  </form>
+  <% if (!rows.length) { %><div class="empty">No sessions match these filters.</div><% } else { %>
+  <form method="post" action="/admin/timesheets/review">
+    <input type="hidden" name="_csrf" value="<%= csrf %>">
+    <div class="table-wrap"><table class="table">
+      <thead><tr><th><input type="checkbox" data-select-all="ids" aria-label="Select all"></th><th>Date</th><th>Tutor</th><th>Student</th><th>Subject / topic</th><th>Hours</th><th>Status</th></tr></thead>
+      <tbody><% for (const r of rows) { %>
+        <tr>
+          <td><input type="checkbox" name="ids" value="<%= r.id %>" aria-label="Select session"></td>
+          <td class="nowrap"><%= d.fmtDate(r.session_date) %><div class="muted small"><%= r.start_time %>–<%= r.end_time %> · <%= r.mode %></div></td>
+          <td><%= r.tutor_name %></td><td><%= r.student_name %></td>
+          <td><%= r.subject %><% if (r.topic) { %><div class="muted small"><%= r.topic %></div><% } %><% if (r.notes) { %><div class="muted small">Note: <%= r.notes %></div><% } %></td>
+          <td><%= d.fmtHours(r.minutes) %></td>
+          <td><span class="badge b-<%= r.status %>"><%= r.status %></span><% if (r.admin_note) { %><div class="muted small"><%= r.admin_note %></div><% } %></td>
+        </tr>
+      <% } %></tbody>
+    </table></div>
+    <div class="review-bar">
+      <input name="admin_note" maxlength="255" placeholder="Optional note to tutor (e.g. reason for rejection)">
+      <button class="btn btn-danger-ghost" name="action" value="reject">Reject selected</button>
+      <button class="btn" name="action" value="approve">Approve selected</button>
+    </div>
+  </form>
+  <% } %>
+</section>
+<%- include('../partials/foot') %>

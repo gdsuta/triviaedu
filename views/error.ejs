@@ -1,0 +1,7 @@
+<%- include('partials/head') %>
+<div class="card narrow center">
+  <h2><%= title %></h2>
+  <p class="muted"><%= message %></p>
+  <a class="btn" href="<%= user ? '/portal' : '/' %>"><%= user ? 'Go to dashboard' : 'Go to homepage' %></a>
+</div>
+<%- include('partials/foot') %>
