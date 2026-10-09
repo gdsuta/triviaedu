@@ -66,5 +66,5 @@ public/img/site/          photos used by the public site
 ## Open content questions (confirm with the owner)
 
 - Office address: the WordPress "Location" page says Jl. HR Rasuna Said Kav. C5, Jakarta Selatan, and the older "Company Profile" says Indragiri 390, Depok. The site uses the Jakarta address.
-- Email: the site uses contact@triviaedu.com. The old profile listed contact@tutorprivat.com.
+- Email: the site uses admin@triviaedu.com.
 - Tuition fee "from IDR 200,000 per online session (primary)" comes from a 2022 post. Check that it is still current.
