@@ -37,6 +37,7 @@ const pages = [
 router.use((req, res, next) => {
   res.locals.app = { name: config.appName, currency: config.currency };
   res.locals.contact = contact;
+  res.locals.ogImage = `${config.appUrl}/img/og-image.jpg`;
   res.locals.path = req.path;
   res.locals.nav = {
     programs: pages.filter((p) => p.group === 'programs'),
