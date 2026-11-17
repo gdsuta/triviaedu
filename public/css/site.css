@@ -17,7 +17,7 @@
 .dropdown { position: relative; }
 .dropdown-btn { background: none; border: 0; font: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; }
 .dropdown-btn svg { width: 16px; height: 16px; }
-.dropdown-panel { position: absolute; top: 100%; left: 0; min-width: 250px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 12px 32px rgba(16, 24, 22, .12); padding: 6px; display: none; }
+.dropdown-panel { position: absolute; top: 100%; left: 0; min-width: 250px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 12px 32px rgba(20, 28, 34, .12); padding: 6px; display: none; }
 .dropdown:hover .dropdown-panel, .dropdown:focus-within .dropdown-panel { display: block; }
 .dropdown-panel a { display: block; padding: 9px 12px; border-radius: 8px; color: var(--text); }
 .dropdown-panel a:hover { background: var(--surface-2); text-decoration: none; }
@@ -35,13 +35,14 @@
 }
 
 /* ---------- Hero ---------- */
-.hero { position: relative; color: #fff; background: linear-gradient(100deg, rgba(6, 46, 42, .92) 0%, rgba(6, 46, 42, .75) 55%, rgba(6, 46, 42, .35) 100%), url('/img/site/hero-graduation.jpg') center / cover no-repeat; }
+.hero { position: relative; color: #fff; background: linear-gradient(100deg, rgba(24, 36, 46, .92) 0%, rgba(24, 36, 46, .76) 55%, rgba(24, 36, 46, .35) 100%), url('/img/site/hero-graduation.jpg') center / cover no-repeat; }
 .hero-inner { padding-top: clamp(48px, 9vw, 104px); padding-bottom: clamp(48px, 9vw, 104px); }
 .hero h1 { max-width: 760px; }
 .hero .lead { max-width: 640px; color: rgba(255, 255, 255, .88); }
-.hero .eyebrow { color: #fcd34d; }
+.hero .eyebrow { color: #e6cfae; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
-.hero .btn { background: #f59e0b; border-color: #f59e0b; color: #1f1300; }
+.hero .btn { background: #9a5a4a; border-color: #9a5a4a; color: #fff; }
+.hero .btn:hover { background: #864c3e; border-color: #864c3e; }
 .hero .btn-ghost { background: transparent; border-color: rgba(255, 255, 255, .5); color: #fff; }
 .hero .btn-ghost:hover { background: rgba(255, 255, 255, .1); }
 
@@ -73,7 +74,9 @@ ul.plain { list-style: none; padding: 0; margin: 0; }
 ul.plain li { padding: 3px 0; }
 ul.ticks { list-style: none; padding: 0; margin: 0 0 1rem; }
 ul.ticks li { position: relative; padding: 5px 0 5px 30px; }
-ul.ticks li::before { content: ''; position: absolute; left: 0; top: 8px; width: 20px; height: 20px; border-radius: 50%; background: var(--primary-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f766e' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12l4 4 8-8'/%3E%3C/svg%3E") center / 13px no-repeat; }
+ul.ticks li::before { content: ''; position: absolute; left: 0; top: 8px; width: 20px; height: 20px; border-radius: 50%; background: var(--primary-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a6373' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12l4 4 8-8'/%3E%3C/svg%3E") center / 13px no-repeat; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) ul.ticks li::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239fb8c6' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12l4 4 8-8'/%3E%3C/svg%3E"); } }
+:root[data-theme="dark"] ul.ticks li::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239fb8c6' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12l4 4 8-8'/%3E%3C/svg%3E"); }
 ul.chips { list-style: none; padding: 0; margin: 0 0 1rem; display: flex; flex-wrap: wrap; gap: 8px; }
 ul.chips li { background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px; font-size: .9rem; }
 
