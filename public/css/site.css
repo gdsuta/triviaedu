@@ -48,6 +48,22 @@
 
 .page-hero { background: radial-gradient(circle at 15% 0%, var(--primary-soft), transparent 60%), var(--surface); border-bottom: 1px solid var(--border); padding: clamp(36px, 6vw, 64px) 0; }
 .page-hero .lead { max-width: 720px; color: var(--muted); }
+/* Page header with a photo that fades into the header background */
+.page-hero.has-photo { position: relative; overflow: hidden; }
+.page-hero-photo { position: absolute; top: 0; right: 0; bottom: 0; width: 54%; }
+.page-hero-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 35%;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 28%); mask-image: linear-gradient(to right, transparent 0%, #000 28%); }
+.page-hero-photo.focus-low img { object-position: center 80%; }
+.page-hero-text { position: relative; }
+.page-hero.has-photo .page-hero-text > * { max-width: min(560px, 48%); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .page-hero-photo img { filter: brightness(.82); } }
+:root[data-theme="dark"] .page-hero-photo img { filter: brightness(.82); }
+@media (max-width: 760px) {
+  .page-hero.has-photo { padding-top: 0; }
+  .page-hero-photo { position: relative; width: 100%; height: clamp(200px, 56vw, 300px); margin-bottom: -48px; }
+  .page-hero-photo img { -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); }
+  .page-hero.has-photo .page-hero-text > * { max-width: none; }
+}
 .eyebrow { text-transform: uppercase; letter-spacing: .1em; font-size: .78rem; font-weight: 700; color: var(--primary); margin: 0 0 10px; }
 .lead { font-size: 1.12rem; line-height: 1.6; margin: 0; }
 
